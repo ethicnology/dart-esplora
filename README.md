@@ -49,6 +49,11 @@ getAddressTxs(String address);
 getAddressUtxo(String address);
 ```
 
+#### GET /address/:address/txs/mempool
+```dart
+getAddressUtxoMempool(String address);
+```
+
 #### GET /address-prefix/:prefix
 ```dart
 getAddressPrefix(String prefix);
