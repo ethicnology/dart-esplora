@@ -50,6 +50,7 @@ void main() {
   });
 
   group('getAddressUtxo', () {
+    /// This test randomly fails because of ordering. I don't know if the reverse order come from API response or from dart lang.
     test('getAddressUtxo works', () async {
       var esplora = Esplora(Uri.parse(url));
       List<Utxo> utxo = await esplora
@@ -84,6 +85,21 @@ void main() {
       var esplora = Esplora(Uri.parse(url));
       expect(
           () async => await esplora.getAddressUtxo("invalid"), throwsException);
+    });
+  });
+
+  group('getAddressTxs', () {
+    test('getAddressTxs', () async {
+      var esplora = Esplora(Uri.parse(url));
+      List<Transaction> result = await esplora
+          .getAddressTxs("tb1q94hkle7ghjv8h9fygasez5mrmlvarf4vhfjzlq");
+      expect(result[0].txid,
+          "d66bacacca849b17bae2daab37114bd5417480b5fc057d71127cdd032103cabc");
+      expect(result[0].vin[0].txid,
+          "2ca1dadc02292c3e575ae8fbd1c0f0636d9a0a2bb6a85c7fbeb12b610110ffc2");
+      expect(result[0].vout[0].scriptpubkey,
+          "00142b8e837dfcff6f04987c57dc21a05e13f9951bd0");
+      expect(result[0].status.blockHeight, 2190517);
     });
   });
 }
