@@ -9,7 +9,6 @@ class Vout {
 
   Vout(this.scriptpubkey, this.scriptpubkeyAsm, this.scriptpubkeyType,
       this.scriptpubkeyAddress, this.value) {
-    isEqual(scriptpubkeyAddress.length, 42);
     isPositive(value);
   }
 
@@ -19,7 +18,6 @@ class Vout {
     scriptpubkeyType = json['scriptpubkey_type'];
     scriptpubkeyAddress = json['scriptpubkey_address'];
     value = json['value'];
-    isEqual(scriptpubkeyAddress.length, 42);
     isPositive(value);
   }
 
