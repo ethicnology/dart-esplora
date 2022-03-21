@@ -37,4 +37,12 @@ class Esplora {
     }
     return result;
   }
+
+  Future<List<String>> getAddressPrefix(String prefix) async {
+    var response = await http.get(Uri.parse("$url/api/address-prefix/$prefix"));
+    List<String> result = (jsonDecode(response.body) as List<dynamic>)
+        .map((i) => i as String)
+        .toList();
+    return result;
+  }
 }
