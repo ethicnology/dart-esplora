@@ -48,4 +48,42 @@ void main() {
           Stats.fromJson(json['mempool_stats']).txCount);
     });
   });
+
+  group('getAddressUtxo', () {
+    test('getAddressUtxo works', () async {
+      var esplora = Esplora(Uri.parse(url));
+      List<Utxo> utxo = await esplora
+          .getAddressUtxo("tb1q94hkle7ghjv8h9fygasez5mrmlvarf4vhfjzlq");
+      List<Utxo> expected = [
+        Utxo(
+            "3937b79a3e3ea9f26bd284f696afc6e6cd426bc0182b213f88f9338d2bb2d96d",
+            1,
+            10000,
+            Status(
+                true,
+                2190517,
+                "00000000000000e11283a2828be52fb7e94264de722c98fd0d1221be7efd7429",
+                1647732997)),
+        Utxo(
+            "d66bacacca849b17bae2daab37114bd5417480b5fc057d71127cdd032103cabc",
+            1,
+            1126724,
+            Status(
+                true,
+                2190517,
+                "00000000000000e11283a2828be52fb7e94264de722c98fd0d1221be7efd7429",
+                1647732997))
+      ];
+      for (var i = 0; i < expected.length; i++) {
+        expect(utxo[i].txid, expected[i].txid);
+        expect(utxo[i].value, expected[i].value);
+      }
+    });
+
+    test('getAddressUtxo throws', () async {
+      var esplora = Esplora(Uri.parse(url));
+      expect(
+          () async => await esplora.getAddressUtxo("invalid"), throwsException);
+    });
+  });
 }
