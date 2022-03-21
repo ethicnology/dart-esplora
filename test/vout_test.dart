@@ -1,6 +1,15 @@
 import 'package:esplora/src/vout.dart';
 import 'package:test/test.dart';
 
+const validJson = {
+  "scriptpubkey": "00142b8e837dfcff6f04987c57dc21a05e13f9951bd0",
+  "scriptpubkey_asm":
+      "OP_0 OP_PUSHBYTES_20 2b8e837dfcff6f04987c57dc21a05e13f9951bd0",
+  "scriptpubkey_type": "v0_p2wpkh",
+  "scriptpubkey_address": "tb1q9w8gxl0ulahsfxru2lwzrgz7z0ue2x7ss2ldvf",
+  "value": 13826039196,
+};
+
 void main() {
   test('Vout constructor', () {
     var vout = Vout(
@@ -19,15 +28,7 @@ void main() {
   });
 
   test('Vout.fromJson', () {
-    var json = {
-      "scriptpubkey": "00142b8e837dfcff6f04987c57dc21a05e13f9951bd0",
-      "scriptpubkey_asm":
-          "OP_0 OP_PUSHBYTES_20 2b8e837dfcff6f04987c57dc21a05e13f9951bd0",
-      "scriptpubkey_type": "v0_p2wpkh",
-      "scriptpubkey_address": "tb1q9w8gxl0ulahsfxru2lwzrgz7z0ue2x7ss2ldvf",
-      "value": 13826039196,
-    };
-    var vout = Vout.fromJson(json);
+    var vout = Vout.fromJson(validJson);
     expect(vout.scriptpubkey, "00142b8e837dfcff6f04987c57dc21a05e13f9951bd0");
     expect(vout.scriptpubkeyAsm,
         "OP_0 OP_PUSHBYTES_20 2b8e837dfcff6f04987c57dc21a05e13f9951bd0");
@@ -38,26 +39,18 @@ void main() {
   });
 
   test('Vout.toJson', () {
-    var json = {
-      "scriptpubkey": "00142b8e837dfcff6f04987c57dc21a05e13f9951bd0",
-      "scriptpubkey_asm":
-          "OP_0 OP_PUSHBYTES_20 2b8e837dfcff6f04987c57dc21a05e13f9951bd0",
-      "scriptpubkey_type": "v0_p2wpkh",
-      "scriptpubkey_address": "tb1q9w8gxl0ulahsfxru2lwzrgz7z0ue2x7ss2ldvf",
-      "value": 13826039196,
-    };
-    var vout = Vout.fromJson(json);
-    expect(vout.toJson(), json);
+    var vout = Vout.fromJson(validJson);
+    expect(vout.toJson(), validJson);
   });
 
   test('Vout should throws', () {
-    var json = {
+    var invalidJson = {
       "scriptpubkey": "invalid",
       "scriptpubkey_asm": "invalid",
       "scriptpubkey_type": "invalid",
       "scriptpubkey_address": "invalid",
       "value": -1,
     };
-    expect(() => Vout.fromJson(json), throwsException);
+    expect(() => Vout.fromJson(invalidJson), throwsException);
   });
 }
