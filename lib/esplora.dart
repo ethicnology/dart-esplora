@@ -3,6 +3,10 @@
 /// More dartdocs go here.
 library esplora;
 
-export 'src/esplora_base.dart';
-
-// TODO: Export any libraries intended for clients of this package.
+export 'src/esplora.dart';
+export 'src/stats.dart';
+export 'src/status.dart';
+export 'src/transaction.dart';
+export 'src/utxo.dart';
+export 'src/vin.dart';
+export 'src/vout.dart';
