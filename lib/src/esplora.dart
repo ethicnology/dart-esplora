@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'stats.dart';
+import 'transaction.dart';
 import 'utxo.dart';
 
 class Esplora {
@@ -23,6 +24,16 @@ class Esplora {
     List<Utxo> result = [];
     for (var item in json) {
       result.add(Utxo.fromJson(item));
+    }
+    return result;
+  }
+
+  Future<List<Transaction>> getAddressTxs(String address) async {
+    var response = await http.get(Uri.parse("$url/api/address/$address/txs"));
+    List<dynamic> json = jsonDecode(response.body) as List<dynamic>;
+    List<Transaction> result = [];
+    for (var item in json) {
+      result.add(Transaction.fromJson(item));
     }
     return result;
   }
