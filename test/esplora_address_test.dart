@@ -98,4 +98,11 @@ void main() {
       expect(mapResult.containsKey(address), true);
     }
   });
+
+  /// Mempool is hard to test because transactions doesn't stay there.
+  test('getAddressTxsMempool', () async {
+    var esplora = Esplora(url);
+    List<Transaction> result = await esplora.getAddressTxsMempool(address);
+    expect(result, []);
+  });
 }
