@@ -24,7 +24,7 @@ class Vin {
     prevout = Vout.fromJson(json['prevout']);
     scriptsig = json['scriptsig'];
     scriptsigAsm = json['scriptsig_asm'];
-    witness = json['witness'];
+    witness = List.from(json['witness']);
     isCoinbase = json['is_coinbase'];
     sequence = json['sequence'];
     isEqual(txid.length, 64);
