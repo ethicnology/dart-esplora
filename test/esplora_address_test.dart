@@ -2,7 +2,7 @@ import 'package:esplora/esplora.dart';
 import 'package:test/test.dart';
 
 /// These tests relies on mainnet transactions that can be spent/altered in the future.
-const url = "https://blockstream.info/";
+final url = Uri.parse("https://blockstream.info/");
 const address = "1TAHuoo6tKwZCyPja1mkkYQxmNZBW9HYP";
 
 void main() {
@@ -23,7 +23,7 @@ void main() {
         "tx_count": 0
       },
     };
-    var esplora = Esplora(Uri.parse(url));
+    var esplora = Esplora(url);
     Map<String, Stats> stats = await esplora.getAddress(address);
     expect(stats['chain']!.fundedTxoCount,
         Stats.fromJson(json['chain_stats']).fundedTxoCount);
@@ -49,7 +49,7 @@ void main() {
 
   group('getAddressUtxo', () {
     test('getAddressUtxo', () async {
-      var esplora = Esplora(Uri.parse(url));
+      var esplora = Esplora(url);
       List<Utxo> utxo = await esplora.getAddressUtxo(address);
       Utxo expected = Utxo(
           "f2957c19e673406c6388b0e8f1c9f1e51e81cb56e83730415c1cd7b154666c1b",
@@ -66,14 +66,14 @@ void main() {
     });
 
     test('getAddressUtxo throws', () {
-      var esplora = Esplora(Uri.parse(url));
+      var esplora = Esplora(url);
       expect(
           () async => await esplora.getAddressUtxo("invalid"), throwsException);
     });
   });
 
   test('getAddressTxs', () async {
-    var esplora = Esplora(Uri.parse(url));
+    var esplora = Esplora(url);
     List<Transaction> result = await esplora.getAddressTxs(address);
     expect(result[0].txid,
         "f2957c19e673406c6388b0e8f1c9f1e51e81cb56e83730415c1cd7b154666c1b");
@@ -82,5 +82,20 @@ void main() {
     expect(result[0].vout[0].scriptpubkey,
         "76a91404f2923ad0c41b1f934492b77813c3a20f355ce188ac");
     expect(result[0].status.blockHeight, 728418);
+  });
+
+  test('getAddressPrefix', () async {
+    var esplora = Esplora(url);
+    List<String> result = await esplora.getAddressPrefix("1111111111111111111");
+    List<String> expected = [
+      "1111111111111111111114oLvT2",
+      "111111111111111111112czxoHN",
+      "11111111111111111111BZbvjr",
+      "1111111111111111111a49ZJYU"
+    ];
+    Map mapResult = {for (var address in result) address: address};
+    for (var address in expected) {
+      expect(mapResult.containsKey(address), true);
+    }
   });
 }
