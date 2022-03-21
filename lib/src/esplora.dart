@@ -38,6 +38,14 @@ class Esplora {
     return result;
   }
 
+  Future<List<Transaction>> getAddressTxsMempool(String address) async {
+    var response =
+        await http.get(Uri.parse("$url/api/address/$address/txs/mempool"));
+    List<dynamic> json = jsonDecode(response.body) as List<dynamic>;
+    List<Transaction> result = json.map((i) => i as Transaction).toList();
+    return result;
+  }
+
   Future<List<String>> getAddressPrefix(String prefix) async {
     var response = await http.get(Uri.parse("$url/api/address-prefix/$prefix"));
     List<String> result = (jsonDecode(response.body) as List<dynamic>)
