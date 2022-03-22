@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'stats.dart';
 import 'transaction.dart';
 import 'utxo.dart';
+import 'status.dart';
 
 class Esplora {
   Uri url;
@@ -16,6 +17,19 @@ class Esplora {
     var response = await http.get(Uri.parse("$url/api/tx/$txid"));
     dynamic json = jsonDecode(response.body);
     return Transaction.fromJson(json);
+  }
+
+  /// Returns the transaction confirmation status.
+  Future<Status> getTxStatus(String txid) async {
+    var response = await http.get(Uri.parse("$url/api/tx/$txid/status"));
+    dynamic json = jsonDecode(response.body);
+    return Status.fromJson(json);
+  }
+
+  /// Returns the raw transaction in hex data.
+  Future<String> getTxHex(String txid) async {
+    var response = await http.get(Uri.parse("$url/api/tx/$txid/hex"));
+    return response.body;
   }
 
   // ADDRESSES
