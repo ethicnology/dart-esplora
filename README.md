@@ -44,6 +44,11 @@ getAddress(String address);
 getAddressTxs(String address);
 ```
 
+#### GET /address/:address/txs/chain[/:last_seen_txid]
+```dart
+getAddressTxsChain(String address, String lastSeenTxid: "");
+```
+
 #### GET /address/:address/utxo
 ```dart
 getAddressUtxo(String address);
