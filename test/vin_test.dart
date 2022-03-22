@@ -21,6 +21,9 @@ const validJson = {
   ],
   "is_coinbase": false,
   "sequence": 4294967294,
+  "inner_redeemscript_asm":
+      "OP_0 OP_PUSHBYTES_20 3d288f785510bc675f574a864ee66dda10aeb3bf",
+  "inner_witnessscript_asm": "",
 };
 
 void main() {
@@ -41,7 +44,9 @@ void main() {
           "0250c9d976c413530a09fe90f03414e640c7cf5e6b143fb501323b1e177d5b81d9"
         ],
         false,
-        4294967294);
+        4294967294,
+        "OP_0 OP_PUSHBYTES_20 3d288f785510bc675f574a864ee66dda10aeb3bf",
+        "");
     expect(vin.txid,
         "2ca1dadc02292c3e575ae8fbd1c0f0636d9a0a2bb6a85c7fbeb12b610110ffc2");
     expect(vin.vout, 0);
@@ -52,6 +57,9 @@ void main() {
         "0250c9d976c413530a09fe90f03414e640c7cf5e6b143fb501323b1e177d5b81d9");
     expect(vin.isCoinbase, false);
     expect(vin.sequence, 4294967294);
+    expect(vin.innerRedeemscriptAsm,
+        "OP_0 OP_PUSHBYTES_20 3d288f785510bc675f574a864ee66dda10aeb3bf");
+    expect(vin.innerWitnessscriptAsm, "");
   });
 
   test('Vin.fromJson', () {
@@ -66,6 +74,9 @@ void main() {
         "0250c9d976c413530a09fe90f03414e640c7cf5e6b143fb501323b1e177d5b81d9");
     expect(vin.isCoinbase, false);
     expect(vin.sequence, 4294967294);
+    expect(vin.innerRedeemscriptAsm,
+        "OP_0 OP_PUSHBYTES_20 3d288f785510bc675f574a864ee66dda10aeb3bf");
+    expect(vin.innerWitnessscriptAsm, "");
   });
 
   test('Vin.toJson', () {

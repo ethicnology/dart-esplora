@@ -28,7 +28,9 @@ const validJson = {
         "0250c9d976c413530a09fe90f03414e640c7cf5e6b143fb501323b1e177d5b81d9"
       ],
       "is_coinbase": false,
-      "sequence": 4294967294
+      "sequence": 4294967294,
+      "inner_redeemscript_asm": "",
+      "inner_witnessscript_asm": ""
     }
   ],
   "vout": [
@@ -84,7 +86,9 @@ void main() {
               "0250c9d976c413530a09fe90f03414e640c7cf5e6b143fb501323b1e177d5b81d9"
             ],
             false,
-            4294967294)
+            4294967294,
+            "",
+            "")
       ],
       [
         Vout(
