@@ -60,9 +60,9 @@ void main() {
               728418,
               "00000000000000000006aa48d85e9229454621c0addbd2bbda4e3d280eade466",
               1647902012));
-      expect(utxo[0].txid, expected.txid);
-      expect(utxo[0].vout, expected.vout);
-      expect(utxo[0].value, expected.value);
+      expect(utxo[utxo.length - 1].txid, expected.txid);
+      expect(utxo[utxo.length - 1].vout, expected.vout);
+      expect(utxo[utxo.length - 1].value, expected.value);
     });
 
     test('getAddressUtxo throws', () {
@@ -75,13 +75,13 @@ void main() {
   test('getAddressTxs', () async {
     var esplora = Esplora(url);
     List<Transaction> result = await esplora.getAddressTxs(address);
-    expect(result[0].txid,
+    expect(result[result.length - 1].txid,
         "f2957c19e673406c6388b0e8f1c9f1e51e81cb56e83730415c1cd7b154666c1b");
-    expect(result[0].vin[0].txid,
+    expect(result[result.length - 1].vin[0].txid,
         "dca87fe24dfe3f308014ed4b6a91ad39ae06c7ee279eb14b1b78645f90cef36d");
-    expect(result[0].vout[0].scriptpubkey,
+    expect(result[result.length - 1].vout[0].scriptpubkey,
         "76a91404f2923ad0c41b1f934492b77813c3a20f355ce188ac");
-    expect(result[0].status.blockHeight, 728418);
+    expect(result[result.length - 1].status.blockHeight, 728418);
   });
 
   test('getAddressPrefix', () async {
