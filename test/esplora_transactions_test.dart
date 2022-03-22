@@ -1,6 +1,4 @@
 import 'package:esplora/esplora.dart';
-import 'package:esplora/src/merkle_proof.dart';
-import 'package:esplora/src/outspend.dart';
 import 'package:test/test.dart';
 
 /// These tests relies on mainnet transactions that can be spent in the future.
