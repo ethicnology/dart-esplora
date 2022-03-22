@@ -9,6 +9,17 @@ class Esplora {
 
   Esplora(this.url);
 
+  // TRANSACTIONS
+
+  /// Returns information about the transaction.
+  Future<Transaction> getTx(String txid) async {
+    var response = await http.get(Uri.parse("$url/api/tx/$txid"));
+    dynamic json = jsonDecode(response.body);
+    return Transaction.fromJson(json);
+  }
+
+  // ADDRESSES
+
   /// Get information about an address.
   Future<Map<String, Stats>> getAddress(String address) async {
     var response = await http.get(Uri.parse("$url/api/address/$address"));
