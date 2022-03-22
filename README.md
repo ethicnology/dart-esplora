@@ -1,38 +1,67 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
-
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
-
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+# dart-esplora 
+[Blockstream Esplora](https://github.com/Blockstream/esplora) wrapper for dart
 
 ## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
-
-```dart
-const like = 'sample';
+### From Github
+```yaml
+dependencies:
+  esplora:
+    git:
+      url: https://github.com/ethicnology/dart-esplora.git
+      ref: main
 ```
 
-## Covered
+## Usage
+```dart
+  final url = Uri.parse("https://blockstream.info/");
+  const address = "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa";
+  const txid =
+      "e6b148846d7db3367aab6ea46a64e27528764f36581dec6ffc2326e3af2af874";
+  var esplora = Esplora(url);
+
+  Transaction tx = await esplora.getTx(txid);
+  print(tx.txid);
+
+  List<Transaction> txs = await esplora.getAddressTxs(address);
+  print(txs[0].txid);
+```
+
+### Transactions
+#### GET /tx/:txid
+```dart
+getTx(String txid);
+```
+
+#### GET /tx/:txid/status
+```dart
+getTxStatus(String txid);
+```
+
+#### GET /tx/:txid/hex
+```dart
+getTxHex(String txid);
+```
+
+#### GET /tx/:txid/merkleblock-proof
+```dart
+getTxMerkleblockProof(String txid);
+```
+
+#### GET /tx/:txid/merkle-proof
+```dart
+getTxMerkleProof(String txid);
+```
+
+#### GET /tx/:txid/outspend/:vout
+```dart
+getTxOutspend(String txid, int vout);
+```
+
+#### GET /tx/:txid/outspends
+```dart
+getTxOutspends(String txid);
+```
+
 ### Addresses
 #### GET /address/:address
 ```dart
