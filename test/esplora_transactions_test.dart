@@ -128,4 +128,10 @@ void main() {
     Outspend outspend = await esplora.getTxOutspend(txid, 0);
     expect(outspend.spent, false);
   });
+
+  test('getTxOutspends', () async {
+    var esplora = Esplora(url);
+    List<Outspend> outspend = await esplora.getTxOutspends(txid);
+    expect(outspend[0].spent, false);
+  });
 }
