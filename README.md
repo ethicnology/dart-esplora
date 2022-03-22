@@ -2,6 +2,16 @@
 [Blockstream Esplora](https://github.com/Blockstream/esplora) wrapper for dart
 
 ## Getting started
+### From pub.dev
+```sh
+dart pub add esplora
+```
+
+```yaml
+dependencies: 
+  esplora: ^1.0.0
+```
+
 ### From Github
 ```yaml
 dependencies:
