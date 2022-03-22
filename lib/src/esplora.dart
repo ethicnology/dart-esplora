@@ -9,6 +9,7 @@ class Esplora {
 
   Esplora(this.url);
 
+  /// Get information about an address.
   Future<Map<String, Stats>> getAddress(String address) async {
     var response = await http.get(Uri.parse("$url/api/address/$address"));
     dynamic json = jsonDecode(response.body);
@@ -18,6 +19,8 @@ class Esplora {
     return result;
   }
 
+  /// Get the list of unspent transaction outputs associated with the address.
+  /// FIXME: Elements-based chains have a valuecommitment field that may appear in place of value, plus the following additional fields: asset/assetcommitment, nonce/noncecommitment, surjection_proof and range_proof.
   Future<List<Utxo>> getAddressUtxo(String address) async {
     var response = await http.get(Uri.parse("$url/api/address/$address/utxo"));
     List<dynamic> json = jsonDecode(response.body);
@@ -28,6 +31,8 @@ class Esplora {
     return result;
   }
 
+  /// Get transaction history for the specified address, sorted with newest first.
+  /// Returns up to 50 mempool transactions plus the first 25 confirmed transactions.
   Future<List<Transaction>> getAddressTxs(String address) async {
     var response = await http.get(Uri.parse("$url/api/address/$address/txs"));
     List<dynamic> json = jsonDecode(response.body) as List<dynamic>;
@@ -38,6 +43,8 @@ class Esplora {
     return result;
   }
 
+  /// Get transaction history for the specified address, sorted with newest first.
+  /// Returns 25 transactions per page. More can be requested by specifying the last txid seen by the previous query.
   Future<List<Transaction>> getAddressTxsChain(String address,
       {String lastSeenTxid = ""}) async {
     var response = await http
@@ -50,6 +57,8 @@ class Esplora {
     return result;
   }
 
+  /// Get unconfirmed transaction history for the specified address.
+  /// Returns up to 50 transactions (no paging).
   Future<List<Transaction>> getAddressTxsMempool(String address) async {
     var response =
         await http.get(Uri.parse("$url/api/address/$address/txs/mempool"));
@@ -58,6 +67,8 @@ class Esplora {
     return result;
   }
 
+  /// Search for addresses beginning with prefix.
+  /// Returns a JSON array with up to 10 results.
   Future<List<String>> getAddressPrefix(String prefix) async {
     var response = await http.get(Uri.parse("$url/api/address-prefix/$prefix"));
     List<String> result = (jsonDecode(response.body) as List<dynamic>)
