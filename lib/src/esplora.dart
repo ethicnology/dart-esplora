@@ -32,6 +32,14 @@ class Esplora {
     return response.body;
   }
 
+  /// Returns a merkle inclusion proof for the transaction using bitcoind's merkleblock format.
+  /// Note: This endpoint is not currently available for Liquid/Elements-based chains.
+  Future<String> getTxMerkleblockProof(String txid) async {
+    var response =
+        await http.get(Uri.parse("$url/api/tx/$txid/merkleblock-proof"));
+    return response.body;
+  }
+
   // ADDRESSES
 
   /// Get information about an address.
