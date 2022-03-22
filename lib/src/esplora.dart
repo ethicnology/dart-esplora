@@ -57,6 +57,17 @@ class Esplora {
     return Outspend.fromJson(json);
   }
 
+  /// Returns the spending status of all transaction outputs.
+  Future<List<Outspend>> getTxOutspends(String txid) async {
+    var response = await http.get(Uri.parse("$url/api/tx/$txid/outspends"));
+    List<dynamic> json = jsonDecode(response.body);
+    List<Outspend> result = [];
+    for (var item in json) {
+      result.add(Outspend.fromJson(item));
+    }
+    return result;
+  }
+
   // ADDRESSES
 
   /// Get information about an address.
