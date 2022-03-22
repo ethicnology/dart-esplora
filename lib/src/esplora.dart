@@ -38,8 +38,8 @@ class Esplora {
     return result;
   }
 
-  Future<List<Transaction>> getAddressTxsChain(
-      String address, String? lastSeenTxid) async {
+  Future<List<Transaction>> getAddressTxsChain(String address,
+      {String lastSeenTxid = ""}) async {
     var response = await http
         .get(Uri.parse("$url/api/address/$address/txs/chain/$lastSeenTxid"));
     List<dynamic> json = jsonDecode(response.body) as List<dynamic>;
