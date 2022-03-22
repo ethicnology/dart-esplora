@@ -1,5 +1,6 @@
 import 'package:esplora/esplora.dart';
 import 'package:esplora/src/merkle_proof.dart';
+import 'package:esplora/src/outspend.dart';
 import 'package:test/test.dart';
 
 /// These tests relies on mainnet transactions that can be spent in the future.
@@ -120,5 +121,11 @@ void main() {
     };
     MerkleProof proof = await esplora.getTxMerkleProof(txid);
     expect(proof.toJson(), expected);
+  });
+
+  test('getTxOutspend', () async {
+    var esplora = Esplora(url);
+    Outspend outspend = await esplora.getTxOutspend(txid, 0);
+    expect(outspend.spent, false);
   });
 }
