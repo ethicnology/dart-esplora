@@ -14,9 +14,20 @@ class Vin {
   late List<String>? witness;
   late bool isCoinbase;
   late int sequence;
+  String innerRedeemscriptAsm = "";
+  String innerWitnessscriptAsm = "";
 
-  Vin(this.txid, this.vout, this.prevout, this.scriptsig, this.scriptsigAsm,
-      this.witness, this.isCoinbase, this.sequence) {
+  Vin(
+      this.txid,
+      this.vout,
+      this.prevout,
+      this.scriptsig,
+      this.scriptsigAsm,
+      this.witness,
+      this.isCoinbase,
+      this.sequence,
+      this.innerRedeemscriptAsm,
+      this.innerWitnessscriptAsm) {
     isEqual(txid.length, 64);
     isPositive(vout);
     isPositive(sequence);
@@ -33,6 +44,12 @@ class Vin {
         : witness = List.from(json['witness']);
     isCoinbase = json['is_coinbase'];
     sequence = json['sequence'];
+    json['inner_redeemscript_asm'] != null
+        ? innerRedeemscriptAsm = json['inner_redeemscript_asm']
+        : {};
+    json['inner_witnessscript_asm'] != null
+        ? innerWitnessscriptAsm = json['inner_witnessscript_asm']
+        : {};
     isEqual(txid.length, 64);
     isPositive(vout);
     isPositive(sequence);
@@ -47,5 +64,7 @@ class Vin {
         'witness': witness,
         'is_coinbase': isCoinbase,
         'sequence': sequence,
+        'inner_redeemscript_asm': innerRedeemscriptAsm,
+        'inner_witnessscript_asm': innerWitnessscriptAsm,
       };
 }
