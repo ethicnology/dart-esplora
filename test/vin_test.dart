@@ -45,10 +45,10 @@ void main() {
     expect(vin.txid,
         "2ca1dadc02292c3e575ae8fbd1c0f0636d9a0a2bb6a85c7fbeb12b610110ffc2");
     expect(vin.vout, 0);
-    expect(vin.prevout.value, 13827180144);
+    expect(vin.prevout!.value, 13827180144);
     expect(vin.scriptsig, "");
     expect(vin.scriptsigAsm, "");
-    expect(vin.witness[1],
+    expect(vin.witness![1],
         "0250c9d976c413530a09fe90f03414e640c7cf5e6b143fb501323b1e177d5b81d9");
     expect(vin.isCoinbase, false);
     expect(vin.sequence, 4294967294);
@@ -59,10 +59,10 @@ void main() {
     expect(vin.txid,
         "2ca1dadc02292c3e575ae8fbd1c0f0636d9a0a2bb6a85c7fbeb12b610110ffc2");
     expect(vin.vout, 0);
-    expect(vin.prevout.value, 13827180144);
+    expect(vin.prevout!.value, 13827180144);
     expect(vin.scriptsig, "");
     expect(vin.scriptsigAsm, "");
-    expect(vin.witness[1],
+    expect(vin.witness![1],
         "0250c9d976c413530a09fe90f03414e640c7cf5e6b143fb501323b1e177d5b81d9");
     expect(vin.isCoinbase, false);
     expect(vin.sequence, 4294967294);
