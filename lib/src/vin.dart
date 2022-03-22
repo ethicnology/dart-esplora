@@ -11,7 +11,7 @@ class Vin {
   late String scriptsigAsm;
 
   /// Some old bitcoin txs doesn't have a witness: 4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b
-  List<String> witness = [];
+  late List<String>? witness;
   late bool isCoinbase;
   late int sequence;
 
@@ -28,7 +28,9 @@ class Vin {
     prevout = Vout.fromJson(json['prevout']);
     scriptsig = json['scriptsig'];
     scriptsigAsm = json['scriptsig_asm'];
-    json['witness'] != [] ? witness = List.from(json['witness']) : {};
+    json['witness'] == null
+        ? witness = []
+        : witness = List.from(json['witness']);
     isCoinbase = json['is_coinbase'];
     sequence = json['sequence'];
     isEqual(txid.length, 64);
