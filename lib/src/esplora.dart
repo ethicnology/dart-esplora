@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:esplora/src/merkle_proof.dart';
+import 'package:esplora/src/outspend.dart';
 import 'package:http/http.dart' as http;
 import 'stats.dart';
 import 'transaction.dart';
@@ -46,6 +47,14 @@ class Esplora {
     var response = await http.get(Uri.parse("$url/api/tx/$txid/merkle-proof"));
     dynamic json = jsonDecode(response.body);
     return MerkleProof.fromJson(json);
+  }
+
+  /// Returns the spending status of a transaction output.
+  Future<Outspend> getTxOutspend(String txid, int vout) async {
+    var response =
+        await http.get(Uri.parse("$url/api/tx/$txid/outspend/$vout"));
+    dynamic json = jsonDecode(response.body);
+    return Outspend.fromJson(json);
   }
 
   // ADDRESSES
