@@ -1,6 +1,4 @@
 import 'package:esplora/esplora.dart';
-import 'package:esplora/src/merkle_proof.dart';
-import 'package:esplora/src/outspend.dart';
 
 void main() async {
   final url = Uri.parse("https://blockstream.info/");
