@@ -68,6 +68,10 @@ class Esplora {
     return result;
   }
 
+  /// TODO: POST /tx
+  /// Broadcast a raw transaction to the network.
+  /// The transaction should be provided as hex in the request body. The txid will be returned on success.
+
   // ADDRESSES
 
   /// Get information about an address.
