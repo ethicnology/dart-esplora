@@ -32,8 +32,34 @@ to `/example` folder.
 const like = 'sample';
 ```
 
-## Additional information
+## Covered
+### Addresses
+#### GET /address/:address
+```dart
+getAddress(String address);
+```
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+#### GET /address/:address/txs
+```dart
+getAddressTxs(String address);
+```
+
+#### GET /address/:address/txs/chain/:last_seen_txid
+```dart
+getAddressTxsChain(String address, String lastSeenTxid: "");
+```
+
+#### GET /address/:address/utxo
+```dart
+getAddressUtxo(String address);
+```
+
+#### GET /address/:address/txs/mempool
+```dart
+getAddressUtxoMempool(String address);
+```
+
+#### GET /address-prefix/:prefix
+```dart
+getAddressPrefix(String prefix);
+```
