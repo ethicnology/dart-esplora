@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:esplora/src/merkle_proof.dart';
 import 'package:http/http.dart' as http;
 import 'stats.dart';
 import 'transaction.dart';
@@ -38,6 +39,13 @@ class Esplora {
     var response =
         await http.get(Uri.parse("$url/api/tx/$txid/merkleblock-proof"));
     return response.body;
+  }
+
+  /// Returns a merkle inclusion proof for the transaction using Electrum's blockchain.transaction.get_merkle format.
+  Future<MerkleProof> getTxMerkleProof(String txid) async {
+    var response = await http.get(Uri.parse("$url/api/tx/$txid/merkle-proof"));
+    dynamic json = jsonDecode(response.body);
+    return MerkleProof.fromJson(json);
   }
 
   // ADDRESSES
