@@ -37,9 +37,20 @@ void main() {
     expect(status.toJson(), validJson);
   });
 
+  test('Status confirmed false -> blockHeight, blockHash, blockTime = null',
+      () {
+    var unconfirmedStatus = {
+      "confirmed": false,
+    };
+    Status unconfirmed = Status.fromJson(unconfirmedStatus);
+    expect(unconfirmed.blockHeight, null);
+    expect(unconfirmed.blockHash, null);
+    expect(unconfirmed.blockTime, null);
+  });
+
   test('Status should throws', () {
     var invalidJson = {
-      "confirmed": false,
+      "confirmed": true,
       "block_height": -1,
       "block_hash": "invalid",
       "block_time": -1
