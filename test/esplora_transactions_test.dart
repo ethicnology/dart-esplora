@@ -73,4 +73,21 @@ void main() {
     Transaction tx = await esplora.getTx(txid);
     expect(tx.toJson(), json);
   });
+
+  test('getTxStatus', () async {
+    var esplora = Esplora(url);
+    Status tx = await esplora.getTxStatus(txid);
+    expect(tx.confirmed, true);
+    expect(tx.blockHeight, 728418);
+    expect(tx.blockHash,
+        "00000000000000000006aa48d85e9229454621c0addbd2bbda4e3d280eade466");
+    expect(tx.blockTime, 1647902012);
+  });
+
+  test('getTxHex', () async {
+    var esplora = Esplora(url);
+    String hex = await esplora.getTxHex(txid);
+    expect(hex,
+        "020000000001016df3ce905f64781b4bb19e27eec706ae39ad916a4bed1480303ffe4de27fa8dc01000000171600143d288f785510bc675f574a864ee66dda10aeb3bfffffffff0220050000000000001976a91404f2923ad0c41b1f934492b77813c3a20f355ce188ac91280400000000001976a9144e3ef5a6e0970aef88e6446a45fb9b824f85ab1f88ac02483045022100b03680f3a86473afb9fd041d898501fb7d6d34f34fb9299f0e58dd230d7d83030220699d0fc4cf75352d9cc29af088c0657f70527d643b8c9f2ec74ec2acccec8ba201210347c65015a69aafc5cca9ad0c4b02f0d6318d6bb2253ffabfbddfc6fabe0053f000000000");
+  });
 }
