@@ -60,4 +60,7 @@ void main() async {
 
   BlockStatus blockStatus = await esplora.getBlockStatus(hash);
   print(blockStatus.inBestChain);
+
+  List<Transaction> blockTxs = await esplora.getBlockTxs(hash, startIndex: "");
+  print(blockTxs.length);
 }
