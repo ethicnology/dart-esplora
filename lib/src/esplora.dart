@@ -1,13 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'stats.dart';
-import 'transaction.dart';
-import 'utxo.dart';
-import 'status.dart';
-import 'merkle_proof.dart';
-import 'outspend.dart';
-import 'block.dart';
-import 'block_status.dart';
+import 'package:esplora/esplora.dart';
 
 class Esplora {
   Uri url;
@@ -220,5 +213,34 @@ class Esplora {
   Future<String> getBlocksTipHash() async {
     var response = await http.get(Uri.parse("$url/api/blocks/tip/hash"));
     return response.body;
+  }
+
+  // Mempool
+
+  /// Get mempool backlog statistics.
+  Future<Mempool> getMempool() async {
+    var response = await http.get(Uri.parse("$url/api/mempool"));
+    dynamic json = jsonDecode(response.body);
+    Mempool result = Mempool.fromJson(json);
+    return result;
+  }
+
+  /// Get the full list of txids in the mempool as an array.
+  /// The order of the txids is arbitrary and does not match bitcoind's.
+  Future<List<String>> getMempoolTxids() async {
+    var response = await http.get(Uri.parse("$url/api/mempool/txids"));
+    List<dynamic> json = jsonDecode(response.body);
+    List<String> result = json.map((i) => i as String).toList();
+    return result;
+  }
+
+  /// Get a list of the last 10 transactions to enter the mempool.
+  /// Each transaction object contains simplified overview data, with the following fields: txid, fee, vsize and value
+  Future<List<MempoolRecent>> getMempoolRecent() async {
+    var response = await http.get(Uri.parse("$url/api/mempool/recent"));
+    List<dynamic> json = jsonDecode(response.body);
+    List<MempoolRecent> result =
+        json.map((i) => MempoolRecent.fromJson(i)).toList();
+    return result;
   }
 }
