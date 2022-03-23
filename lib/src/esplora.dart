@@ -1,11 +1,12 @@
 import 'dart:convert';
-import 'package:esplora/src/merkle_proof.dart';
-import 'package:esplora/src/outspend.dart';
 import 'package:http/http.dart' as http;
 import 'stats.dart';
 import 'transaction.dart';
 import 'utxo.dart';
 import 'status.dart';
+import 'merkle_proof.dart';
+import 'outspend.dart';
+import 'block.dart';
 
 class Esplora {
   Uri url;
@@ -68,9 +69,9 @@ class Esplora {
     return result;
   }
 
-  /// TODO: POST /tx
-  /// Broadcast a raw transaction to the network.
-  /// The transaction should be provided as hex in the request body. The txid will be returned on success.
+  // TODO: POST /tx
+  // Broadcast a raw transaction to the network.
+  // The transaction should be provided as hex in the request body. The txid will be returned on success.
 
   // ADDRESSES
 
@@ -140,5 +141,14 @@ class Esplora {
         .map((i) => i as String)
         .toList();
     return result;
+  }
+
+  // BLOCKS
+
+  /// Returns information about a block.
+  Future<Block> getBlock(String hash) async {
+    var response = await http.get(Uri.parse("$url/api/block/$hash"));
+    dynamic json = jsonDecode(response.body);
+    return Block.fromJson(json);
   }
 }
