@@ -90,4 +90,7 @@ void main() async {
 
   List<MempoolRecent> mempoolRecent = await esplora.getMempoolRecent();
   print(mempoolRecent.length);
+
+  Map<String, num> estimates = await esplora.getFeeEstimates();
+  print(estimates.length);
 }

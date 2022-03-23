@@ -172,3 +172,9 @@ getMempoolTxids();
 ```dart
 getMempoolRecent();
 ```
+
+### Fee 
+#### GET /fee-estimates
+```dart
+getFeeEstimates();
+```
