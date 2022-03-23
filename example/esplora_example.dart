@@ -81,4 +81,13 @@ void main() async {
 
   String bestBlockHash = await esplora.getBlocksTipHash();
   print(bestBlockHash);
+
+  Mempool mempool = await esplora.getMempool();
+  print(mempool.count);
+
+  List<String> mempoolTxids = await esplora.getMempoolTxids();
+  print(mempoolTxids.length);
+
+  List<MempoolRecent> mempoolRecent = await esplora.getMempoolRecent();
+  print(mempoolRecent.length);
 }
