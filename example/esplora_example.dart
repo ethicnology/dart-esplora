@@ -54,4 +54,10 @@ void main() async {
   // Blocks
   Block block = await esplora.getBlock(hash);
   print(block.height);
+
+  String header = await esplora.getBlockHeader(hash);
+  print(header);
+
+  BlockStatus blockStatus = await esplora.getBlockStatus(hash);
+  print(blockStatus.inBestChain);
 }
