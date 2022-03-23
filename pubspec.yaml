@@ -1,6 +1,6 @@
 name: esplora
-description: Wraps blockstream esplora.
-version: 1.0.0
+description: Blockstream Esplora wrapper in dart.
+version: 1.1.0
 homepage: https://github.com/ethicnology/dart-esplora
 
 environment:
