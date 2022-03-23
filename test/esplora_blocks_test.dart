@@ -73,4 +73,28 @@ void main() {
     expect(txid,
         "4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b");
   });
+
+  test('getBlockHeight', () async {
+    var esplora = Esplora(url);
+    String hash = await esplora.getBlockHeight(0);
+    expect(hash, json['id']);
+  });
+
+  test('getBlocks', () async {
+    var esplora = Esplora(url);
+    List<Block> blocks = await esplora.getBlocks(height: 0);
+    expect(blocks[0].toJson(), json);
+  });
+
+  test('getBlocksTipHeight', () async {
+    var esplora = Esplora(url);
+    int bestBlockHeight = await esplora.getBlocksTipHeight();
+    expect(bestBlockHeight > 728655, true);
+  });
+
+  test('getBlocksTipHash', () async {
+    var esplora = Esplora(url);
+    String bestBlockHash = await esplora.getBlocksTipHash();
+    expect(bestBlockHash.length, 64);
+  });
 }
