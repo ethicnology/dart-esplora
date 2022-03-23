@@ -83,7 +83,7 @@ getAddress(String address);
 getAddressTxs(String address);
 ```
 
-#### GET /address/:address/txs/chain/:last_seen_txid
+#### GET /address/:address/txs/chain/:last_seen_txid(optional)
 ```dart
 getAddressTxsChain(String address, String lastSeenTxid: "");
 ```
@@ -119,7 +119,17 @@ getBlockHeader(String hash);
 getBlockStatus(String hash);
 ```
 
-#### GET /block/:hash/txs/:start_index
+#### GET /block/:hash/txs/:start_index(optional)
 ```dart
 getBlockTxs(String hash, startIndex: "");
+```
+
+#### GET /block/:hash/txids
+```dart
+getBlockTxids(String hash);
+```
+
+#### GET /block/:hash/txid/:index
+```dart
+getBlockTxid(String hash, 0);
 ```

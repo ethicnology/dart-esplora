@@ -63,4 +63,10 @@ void main() async {
 
   List<Transaction> blockTxs = await esplora.getBlockTxs(hash, startIndex: "");
   print(blockTxs.length);
+
+  List<String> blockTxids = await esplora.getBlockTxids(hash);
+  print(blockTxids.length);
+
+  String txid2 = await esplora.getBlockTxid(hash, 0);
+  print(txid2);
 }
