@@ -60,4 +60,17 @@ void main() {
     List<Transaction> blockTxs = await esplora.getBlockTxs(hash);
     expect(blockTxs.length, 1);
   });
+
+  test('getBlockTxids', () async {
+    var esplora = Esplora(url);
+    List<String> blockTxids = await esplora.getBlockTxids(hash);
+    expect(blockTxids.length, 1);
+  });
+
+  test('getBlockTxid', () async {
+    var esplora = Esplora(url);
+    String txid = await esplora.getBlockTxid(hash, 0);
+    expect(txid,
+        "4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b");
+  });
 }
