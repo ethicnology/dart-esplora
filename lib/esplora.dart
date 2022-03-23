@@ -14,3 +14,5 @@ export 'src/outspend.dart';
 export 'src/merkle_proof.dart';
 export 'src/block.dart';
 export 'src/block_status.dart';
+export 'src/mempool.dart';
+export 'src/mempool_recent.dart';
