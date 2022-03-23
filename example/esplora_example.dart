@@ -5,6 +5,8 @@ void main() async {
   const address = "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa";
   const txid =
       "e6b148846d7db3367aab6ea46a64e27528764f36581dec6ffc2326e3af2af874";
+  const hash =
+      "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f";
   var esplora = Esplora(url);
 
   // Transactions
@@ -48,4 +50,8 @@ void main() async {
 
   List<String> addresses = await esplora.getAddressPrefix("11111111111111");
   print(addresses[0]);
+
+  // Blocks
+  Block block = await esplora.getBlock(hash);
+  print(block.height);
 }
