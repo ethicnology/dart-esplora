@@ -7,6 +7,7 @@ import 'status.dart';
 import 'merkle_proof.dart';
 import 'outspend.dart';
 import 'block.dart';
+import 'block_status.dart';
 
 class Esplora {
   Uri url;
@@ -150,5 +151,17 @@ class Esplora {
     var response = await http.get(Uri.parse("$url/api/block/$hash"));
     dynamic json = jsonDecode(response.body);
     return Block.fromJson(json);
+  }
+
+  /// Returns the hex-encoded block header.
+  Future<String> getBlockHeader(String hash) async {
+    var response = await http.get(Uri.parse("$url/api/block/$hash/header"));
+    return response.body;
+  }
+
+  Future<BlockStatus> getBlockStatus(String hash) async {
+    var response = await http.get(Uri.parse("$url/api/block/$hash/status"));
+    dynamic json = jsonDecode(response.body);
+    return BlockStatus.fromJson(json);
   }
 }
