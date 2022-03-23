@@ -16,14 +16,13 @@ void main() {
         "00142b8e837dfcff6f04987c57dc21a05e13f9951bd0",
         "OP_0 OP_PUSHBYTES_20 2b8e837dfcff6f04987c57dc21a05e13f9951bd0",
         "v0_p2wpkh",
-        "tb1q9w8gxl0ulahsfxru2lwzrgz7z0ue2x7ss2ldvf",
+        null,
         13826039196);
     expect(vout.scriptpubkey, "00142b8e837dfcff6f04987c57dc21a05e13f9951bd0");
     expect(vout.scriptpubkeyAsm,
         "OP_0 OP_PUSHBYTES_20 2b8e837dfcff6f04987c57dc21a05e13f9951bd0");
     expect(vout.scriptpubkeyType, "v0_p2wpkh");
-    expect(
-        vout.scriptpubkeyAddress, "tb1q9w8gxl0ulahsfxru2lwzrgz7z0ue2x7ss2ldvf");
+    expect(vout.scriptpubkeyAddress, null);
     expect(vout.value, 13826039196);
   });
 

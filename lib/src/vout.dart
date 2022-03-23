@@ -4,7 +4,7 @@ class Vout {
   late String scriptpubkey;
   late String scriptpubkeyAsm;
   late String scriptpubkeyType;
-  late String scriptpubkeyAddress;
+  late String? scriptpubkeyAddress;
   late int value;
 
   Vout(this.scriptpubkey, this.scriptpubkeyAsm, this.scriptpubkeyType,
@@ -16,7 +16,9 @@ class Vout {
     scriptpubkey = json['scriptpubkey'];
     scriptpubkeyAsm = json['scriptpubkey_asm'];
     scriptpubkeyType = json['scriptpubkey_type'];
-    scriptpubkeyAddress = json['scriptpubkey_address'];
+    json.containsKey("scriptpubkey_address")
+        ? scriptpubkeyAddress = json['scriptpubkey_address']
+        : scriptpubkeyAddress = null;
     value = json['value'];
     isPositive(value);
   }
