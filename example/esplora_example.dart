@@ -69,4 +69,16 @@ void main() async {
 
   String txid2 = await esplora.getBlockTxid(hash, 0);
   print(txid2);
+
+  String blockHash = await esplora.getBlockHeight(0);
+  print(blockHash);
+
+  List<Block> blocks = await esplora.getBlocks();
+  print(blocks.length);
+
+  int bestBlockHeight = await esplora.getBlocksTipHeight();
+  print(bestBlockHeight);
+
+  String bestBlockHash = await esplora.getBlocksTipHash();
+  print(bestBlockHash);
 }
