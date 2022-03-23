@@ -54,4 +54,10 @@ void main() {
     expect(blockStatus.height, null);
     expect(blockStatus.nextBest, null);
   });
+
+  test('getBlockTxs', () async {
+    var esplora = Esplora(url);
+    List<Transaction> blockTxs = await esplora.getBlockTxs(hash);
+    expect(blockTxs.length, 1);
+  });
 }
