@@ -192,4 +192,33 @@ class Esplora {
         await http.get(Uri.parse("$url/api/block/$hash/txid/$index"));
     return response.body;
   }
+
+  /// Returns the hash of the block currently at height.
+  Future<String> getBlockHeight(int height) async {
+    var response = await http.get(Uri.parse("$url/api/block-height/$height"));
+    return response.body;
+  }
+
+  /// Returns the 10 newest blocks starting at the tip or at start_height if specified.
+  Future<List<Block>> getBlocks({int? height}) async {
+    var response = await http.get(Uri.parse("$url/api/blocks/$height"));
+    List<dynamic> json = jsonDecode(response.body);
+    List<Block> result = [];
+    for (var item in json) {
+      result.add(Block.fromJson(item));
+    }
+    return result;
+  }
+
+  /// Returns the height of the last block.
+  Future<int> getBlocksTipHeight() async {
+    var response = await http.get(Uri.parse("$url/api/blocks/tip/height"));
+    return int.parse(response.body);
+  }
+
+  /// Returns the hash of the last block.
+  Future<String> getBlocksTipHash() async {
+    var response = await http.get(Uri.parse("$url/api/blocks/tip/hash"));
+    return response.body;
+  }
 }
