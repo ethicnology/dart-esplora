@@ -12,3 +12,4 @@ export 'src/vin.dart';
 export 'src/vout.dart';
 export 'src/outspend.dart';
 export 'src/merkle_proof.dart';
+export 'src/block.dart';
