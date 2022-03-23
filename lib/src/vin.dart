@@ -36,7 +36,9 @@ class Vin {
   Vin.fromJson(Map<String, dynamic> json) {
     txid = json['txid'];
     vout = json['vout'];
-    prevout = Vout.fromJson(json['prevout']);
+    json['prevout'] == null
+        ? prevout = null
+        : prevout = Vout.fromJson(json['prevout']);
     scriptsig = json['scriptsig'];
     scriptsigAsm = json['scriptsig_asm'];
     json['witness'] == null
