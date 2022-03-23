@@ -138,9 +138,8 @@ class Esplora {
   /// Returns a JSON array with up to 10 results.
   Future<List<String>> getAddressPrefix(String prefix) async {
     var response = await http.get(Uri.parse("$url/api/address-prefix/$prefix"));
-    List<String> result = (jsonDecode(response.body) as List<dynamic>)
-        .map((i) => i as String)
-        .toList();
+    List<dynamic> json = jsonDecode(response.body);
+    List<String> result = json.map((i) => i as String).toList();
     return result;
   }
 
@@ -177,5 +176,20 @@ class Esplora {
       result.add(Transaction.fromJson(item));
     }
     return result;
+  }
+
+  /// Returns a list of all txids in the block.
+  Future<List<String>> getBlockTxids(String hash) async {
+    var response = await http.get(Uri.parse("$url/api/block/$hash/txids"));
+    List<dynamic> json = jsonDecode(response.body);
+    List<String> result = json.map((i) => i as String).toList();
+    return result;
+  }
+
+  /// Returns the transaction at index :index within the specified block.
+  Future<String> getBlockTxid(String hash, int index) async {
+    var response =
+        await http.get(Uri.parse("$url/api/block/$hash/txid/$index"));
+    return response.body;
   }
 }
