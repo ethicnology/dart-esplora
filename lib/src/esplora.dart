@@ -243,4 +243,14 @@ class Esplora {
         json.map((i) => MempoolRecent.fromJson(i)).toList();
     return result;
   }
+
+  // Fees
+
+  /// Get an object where the key is the confirmation target (in number of blocks) and the value is the estimated feerate (in sat/vB).
+  /// The available confirmation targets are 1-25, 144, 504 and 1008 blocks.
+  Future<Map<String, num>> getFeeEstimates() async {
+    var response = await http.get(Uri.parse("$url/api/fee-estimates"));
+    Map<String, num> result = Map<String, num>.from(jsonDecode(response.body));
+    return result;
+  }
 }
