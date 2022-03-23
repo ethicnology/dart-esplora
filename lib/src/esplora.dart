@@ -159,9 +159,23 @@ class Esplora {
     return response.body;
   }
 
+  /// Returns the block status.
   Future<BlockStatus> getBlockStatus(String hash) async {
     var response = await http.get(Uri.parse("$url/api/block/$hash/status"));
     dynamic json = jsonDecode(response.body);
     return BlockStatus.fromJson(json);
+  }
+
+  /// Returns a list of transactions in the block (up to 25 transactions beginning at start_index).
+  Future<List<Transaction>> getBlockTxs(String hash,
+      {String startIndex = ""}) async {
+    var response =
+        await http.get(Uri.parse("$url/api/block/$hash/txs/$startIndex"));
+    List<dynamic> json = jsonDecode(response.body) as List<dynamic>;
+    List<Transaction> result = [];
+    for (var item in json) {
+      result.add(Transaction.fromJson(item));
+    }
+    return result;
   }
 }
