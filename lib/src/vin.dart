@@ -29,8 +29,8 @@ class Vin {
       this.innerRedeemscriptAsm,
       this.innerWitnessscriptAsm) {
     isEqual(txid.length, 64);
-    isPositive(vout);
-    isPositive(sequence);
+    isNonnegativeInt(vout);
+    isNonnegativeInt(sequence);
   }
 
   Vin.fromJson(Map<String, dynamic> json) {
@@ -53,8 +53,8 @@ class Vin {
         ? innerWitnessscriptAsm = json['inner_witnessscript_asm']
         : {};
     isEqual(txid.length, 64);
-    isPositive(vout);
-    isPositive(sequence);
+    isNonnegativeInt(vout);
+    isNonnegativeInt(sequence);
   }
 
   Map<String, dynamic> toJson() => {

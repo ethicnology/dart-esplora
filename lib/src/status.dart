@@ -24,9 +24,9 @@ class Status {
       blockHeight = json['block_height'];
       blockHash = json['block_hash'];
       blockTime = json['block_time'];
-      isPositive(blockHeight!);
+      isNonnegativeInt(blockHeight!);
       isEqual(blockHash!.length, 64);
-      isPositive(blockTime!);
+      isNonnegativeInt(blockTime!);
     }
   }
 

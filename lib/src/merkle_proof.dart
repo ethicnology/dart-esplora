@@ -6,8 +6,8 @@ class MerkleProof {
   late int pos;
 
   MerkleProof(this.blockHeight, this.merkle, this.pos) {
-    isPositive(blockHeight);
-    isPositive(pos);
+    isNonnegativeInt(blockHeight);
+    isNonnegativeInt(pos);
     for (var hash in merkle) {
       isEqual(hash.length, 64);
     }
@@ -17,8 +17,8 @@ class MerkleProof {
     blockHeight = json['block_height'];
     merkle = List.from(json['merkle']);
     pos = json['pos'];
-    isPositive(blockHeight);
-    isPositive(pos);
+    isNonnegativeInt(blockHeight);
+    isNonnegativeInt(pos);
     for (var hash in merkle) {
       isEqual(hash.length, 64);
     }

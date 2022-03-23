@@ -17,11 +17,11 @@ class Transaction {
   Transaction(this.txid, this.version, this.locktime, this.vin, this.vout,
       this.size, this.weight, this.fee, this.status) {
     isEqual(txid.length, 64);
-    isPositive(version);
-    isPositive(locktime);
-    isPositive(size);
-    isPositive(weight);
-    isPositive(fee);
+    isNonnegativeInt(version);
+    isNonnegativeInt(locktime);
+    isNonnegativeInt(size);
+    isNonnegativeInt(weight);
+    isNonnegativeInt(fee);
   }
 
   Transaction.fromJson(Map<String, dynamic> json) {
@@ -35,11 +35,11 @@ class Transaction {
     fee = json['fee'];
     status = Status.fromJson(json['status']);
     isEqual(txid.length, 64);
-    isPositive(version);
-    isPositive(locktime);
-    isPositive(size);
-    isPositive(weight);
-    isPositive(fee);
+    isNonnegativeInt(version);
+    isNonnegativeInt(locktime);
+    isNonnegativeInt(size);
+    isNonnegativeInt(weight);
+    isNonnegativeInt(fee);
   }
 
   Map<String, dynamic> toJson() => {

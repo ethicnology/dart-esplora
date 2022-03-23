@@ -1,6 +1,12 @@
-void isPositive(int value) {
+void isNonnegativeInt(int value) {
   if (value < 0) {
     throw Exception("$value is not > 0");
+  }
+}
+
+void isNonnegativeNum(num value) {
+  if (value < 0.0) {
+    throw Exception("$value is not > 0.0");
   }
 }
 

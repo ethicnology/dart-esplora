@@ -9,7 +9,7 @@ class Vout {
 
   Vout(this.scriptpubkey, this.scriptpubkeyAsm, this.scriptpubkeyType,
       this.scriptpubkeyAddress, this.value) {
-    isPositive(value);
+    isNonnegativeInt(value);
   }
 
   Vout.fromJson(Map<String, dynamic> json) {
@@ -20,7 +20,7 @@ class Vout {
         ? scriptpubkeyAddress = json['scriptpubkey_address']
         : scriptpubkeyAddress = null;
     value = json['value'];
-    isPositive(value);
+    isNonnegativeInt(value);
   }
 
   Map<String, dynamic> toJson() => {

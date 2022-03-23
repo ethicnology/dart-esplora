@@ -30,18 +30,18 @@ class Block {
       this.bits,
       this.difficulty) {
     isEqual(id.length, 64);
-    isPositive(height);
-    isPositive(version);
-    isPositive(timestamp);
-    isPositive(txCount);
-    isPositive(size);
-    isPositive(weight);
+    isNonnegativeInt(height);
+    isNonnegativeInt(version);
+    isNonnegativeInt(timestamp);
+    isNonnegativeInt(txCount);
+    isNonnegativeInt(size);
+    isNonnegativeInt(weight);
     isEqual(merkleRoot.length, 64);
     previousblockhash != null ? isEqual(previousblockhash!.length, 64) : {};
-    isPositive(mediantime);
-    isPositive(nonce);
-    isPositive(bits);
-    isPositive(difficulty);
+    isNonnegativeInt(mediantime);
+    isNonnegativeInt(nonce);
+    isNonnegativeInt(bits);
+    isNonnegativeInt(difficulty);
   }
 
   Block.fromJson(Map<String, dynamic> json) {
@@ -59,18 +59,18 @@ class Block {
     bits = json['bits'];
     difficulty = json['difficulty'];
     isEqual(id.length, 64);
-    isPositive(height);
-    isPositive(version);
-    isPositive(timestamp);
-    isPositive(txCount);
-    isPositive(size);
-    isPositive(weight);
+    isNonnegativeInt(height);
+    isNonnegativeInt(version);
+    isNonnegativeInt(timestamp);
+    isNonnegativeInt(txCount);
+    isNonnegativeInt(size);
+    isNonnegativeInt(weight);
     isEqual(merkleRoot.length, 64);
     previousblockhash != null ? isEqual(previousblockhash!.length, 64) : {};
-    isPositive(mediantime);
-    isPositive(nonce);
-    isPositive(bits);
-    isPositive(difficulty);
+    isNonnegativeInt(mediantime);
+    isNonnegativeInt(nonce);
+    isNonnegativeInt(bits);
+    isNonnegativeInt(difficulty);
   }
 
   Map<String, dynamic> toJson() {

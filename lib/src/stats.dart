@@ -9,10 +9,10 @@ class Stats {
 
   Stats(this.fundedTxoCount, this.fundedTxoSum, this.spentTxoCount,
       this.spentTxoSum, this.txCount) {
-    isPositive(fundedTxoCount);
-    isPositive(fundedTxoSum);
-    isPositive(spentTxoCount);
-    isPositive(spentTxoSum);
+    isNonnegativeInt(fundedTxoCount);
+    isNonnegativeInt(fundedTxoSum);
+    isNonnegativeInt(spentTxoCount);
+    isNonnegativeInt(spentTxoSum);
   }
 
   Stats.fromJson(Map<String, dynamic> json) {
@@ -21,10 +21,10 @@ class Stats {
     spentTxoCount = json['spent_txo_count'];
     spentTxoSum = json['spent_txo_sum'];
     txCount = json['tx_count'];
-    isPositive(fundedTxoCount);
-    isPositive(fundedTxoSum);
-    isPositive(spentTxoCount);
-    isPositive(spentTxoSum);
+    isNonnegativeInt(fundedTxoCount);
+    isNonnegativeInt(fundedTxoSum);
+    isNonnegativeInt(spentTxoCount);
+    isNonnegativeInt(spentTxoSum);
   }
 
   Map<String, dynamic> toJson() => {

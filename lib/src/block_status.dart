@@ -7,7 +7,7 @@ class BlockStatus {
 
   BlockStatus(this.inBestChain, this.height, this.nextBest) {
     if (inBestChain == true) {
-      isPositive(height!);
+      isNonnegativeInt(height!);
       isEqual(nextBest!.length, 64);
     } else {
       height = null;
@@ -20,7 +20,7 @@ class BlockStatus {
     if (inBestChain == true) {
       height = json['height'];
       nextBest = json['next_best'];
-      isPositive(height!);
+      isNonnegativeInt(height!);
       isEqual(nextBest!.length, 64);
     } else {
       height = null;

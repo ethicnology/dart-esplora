@@ -9,9 +9,9 @@ class Utxo {
 
   Utxo(this.txid, this.vout, this.value, this.status) {
     isEqual(txid.length, 64);
-    isPositive(vout);
-    isPositive(value);
-    isPositive(vout);
+    isNonnegativeInt(vout);
+    isNonnegativeInt(value);
+    isNonnegativeInt(vout);
   }
 
   Utxo.fromJson(Map<String, dynamic> json) {
@@ -20,9 +20,9 @@ class Utxo {
     value = json['value'];
     status = Status.fromJson(json['status']);
     isEqual(txid.length, 64);
-    isPositive(vout);
-    isPositive(value);
-    isPositive(vout);
+    isNonnegativeInt(vout);
+    isNonnegativeInt(value);
+    isNonnegativeInt(vout);
   }
 
   Map<String, dynamic> toJson() =>

@@ -20,7 +20,7 @@ class Outspend {
       vin = json['vin'];
       status = Status.fromJson(json['status']);
       isEqual(txid!.length, 64);
-      isPositive(vin!);
+      isNonnegativeInt(vin!);
     }
   }
 
