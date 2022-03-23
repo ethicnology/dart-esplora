@@ -28,7 +28,10 @@ class Mempool {
     count = json['count'];
     vsize = json['vsize'];
     totalFee = json['total_fee'];
-    feeHistogram = json['fee_histogram'];
+    feeHistogram = [];
+    for (var item in json['fee_histogram']) {
+      feeHistogram.add([item[0], item[1]]);
+    }
     isNonnegativeInt(count);
     isNonnegativeInt(vsize);
     isNonnegativeInt(totalFee);
