@@ -102,3 +102,24 @@ getAddressUtxoMempool(String address);
 ```dart
 getAddressPrefix(String prefix);
 ```
+
+### Blocks
+#### GET /block/:hash
+```dart
+getBlock(String hash);
+```
+
+#### GET /block/:hash/header
+```dart
+getBlockHeader(String hash);
+```
+
+#### GET /block/:hash/status
+```dart
+getBlockStatus(String hash);
+```
+
+#### GET /block/:hash/txs/:start_index
+```dart
+getBlockTxs(String hash, startIndex: "");
+```
