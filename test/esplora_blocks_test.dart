@@ -23,9 +23,35 @@ Map<String, dynamic> json = {
 };
 
 void main() {
-  test('getTx', () async {
+  test('getBlock', () async {
     var esplora = Esplora(url);
-    Block tx = await esplora.getBlock(hash);
-    expect(tx.toJson(), json);
+    Block block = await esplora.getBlock(hash);
+    expect(block.toJson(), json);
+  });
+
+  test('getBlockHeader', () async {
+    var esplora = Esplora(url);
+    String header = await esplora.getBlockHeader(hash);
+    expect(header,
+        "0100000000000000000000000000000000000000000000000000000000000000000000003ba3edfd7a7b12b27ac72c3e67768f617fc81bc3888a51323a9fb8aa4b1e5e4a29ab5f49ffff001d1dac2b7c");
+  });
+
+  test('getBlockStatus block in best chain', () async {
+    var esplora = Esplora(url);
+    BlockStatus blockStatus = await esplora.getBlockStatus(hash);
+    expect(blockStatus.inBestChain, true);
+    expect(blockStatus.height, 0);
+    expect(blockStatus.nextBest,
+        "00000000839a8e6886ab5951d76f411475428afc90947ee320161bbf18eb6048");
+  });
+
+  test('getBlockStatus stale/orphan block', () async {
+    var esplora = Esplora(url);
+    String staleBlock =
+        "00000000000000000005e086e9e74aae37139ba27c5ba8b50ba5c773e22c6b61";
+    BlockStatus blockStatus = await esplora.getBlockStatus(staleBlock);
+    expect(blockStatus.inBestChain, false);
+    expect(blockStatus.height, null);
+    expect(blockStatus.nextBest, null);
   });
 }
