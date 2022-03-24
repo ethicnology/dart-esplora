@@ -1,6 +1,8 @@
 # dart-esplora 
 [![Dart CI](https://github.com/ethicnology/dart-esplora/actions/workflows/dart.yml/badge.svg?branch=main)](https://github.com/ethicnology/dart-esplora/actions/workflows/dart.yml)
 [![pub package](https://img.shields.io/pub/v/esplora.svg)](https://pub.dartlang.org/packages/esplora)
+[![codecov](https://codecov.io/gh/ethicnology/dart-esplora/branch/main/graph/badge.svg?token=RZ7O009HQY)](https://codecov.io/gh/ethicnology/dart-esplora)  
+
 [Blockstream Esplora](https://github.com/Blockstream/esplora) wrapper for dart
 
 ## Getting started

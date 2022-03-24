@@ -1,18 +1,44 @@
 name: Dart CI
 
-on: [push]
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
 
 jobs:
-  build:
-
+  tests:
     runs-on: ubuntu-latest
 
-    container:
-      image:  google/dart:latest
-
     steps:
-    - uses: actions/checkout@v1
-    - name: Install dependencies
-      run: dart pub get
-    - name: Run tests
-      run: dart run test test/
+      - name: Checkout the code
+        uses: actions/checkout@v2
+
+      - name: Install and set Flutter version
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Upgrade flutter
+        run: flutter pub upgrade
+
+      - name: Restore packages
+        run: flutter pub get
+
+      - name: Analyze
+        run: flutter analyze
+
+      - name: Run tests
+        run: flutter test --coverage
+        
+      - name: Download codcov uploader
+        run: curl -Os https://uploader.codecov.io/latest/linux/codecov
+        shell: bash
+
+      - name: Set codecov uploader executable
+        run: chmod +x codecov
+        shell: bash
+
+      - name: Execute codecov uploader
+        run: ./codecov
+        shell: bash        
