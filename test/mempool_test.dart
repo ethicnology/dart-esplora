@@ -14,11 +14,15 @@ const validJson = {
 
 void main() {
   test('Mempool constructor', () {
-    var mempool = Mempool(8017, 3844746, 21382463, []);
+    var mempool = Mempool(8017, 3844746, 21382463, [
+      [27.351206, 50056]
+    ]);
     expect(mempool.count, 8017);
     expect(mempool.vsize, 3844746);
     expect(mempool.totalFee, 21382463);
-    expect(mempool.feeHistogram, []);
+    expect(mempool.feeHistogram, [
+      [27.351206, 50056]
+    ]);
   });
 
   test('Mempool.fromJson', () {
