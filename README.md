@@ -1,5 +1,5 @@
 # dart-esplora 
-[![Dart CI](https://github.com/ethicnology/dart-esplora/actions/workflows/dart.yml/badge.svg?branch=master)](https://github.com/ethicnology/dart-esplora/actions/workflows/dart.yml)
+[![Dart CI](https://github.com/ethicnology/dart-esplora/actions/workflows/dart.yml/badge.svg?branch=main)](https://github.com/ethicnology/dart-esplora/actions/workflows/dart.yml)
 [![pub package](https://img.shields.io/pub/v/esplora.svg)](https://pub.dartlang.org/packages/esplora)
 [Blockstream Esplora](https://github.com/Blockstream/esplora) wrapper for dart
 
