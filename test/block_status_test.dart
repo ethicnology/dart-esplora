@@ -9,7 +9,16 @@ const validJson = {
 };
 
 void main() {
-  test('BlockStatus constructor', () {
+  test('BlockStatus constructor inBestChain is true', () {
+    var blockStatus = BlockStatus(true, 0,
+        "00000000839a8e6886ab5951d76f411475428afc90947ee320161bbf18eb6048");
+    expect(blockStatus.inBestChain, true);
+    expect(blockStatus.height, 0);
+    expect(blockStatus.nextBest,
+        "00000000839a8e6886ab5951d76f411475428afc90947ee320161bbf18eb6048");
+  });
+
+  test('BlockStatus constructor inBestChain is false', () {
     var blockStatus = BlockStatus(false, null, null);
     expect(blockStatus.inBestChain, false);
     expect(blockStatus.height, null);
