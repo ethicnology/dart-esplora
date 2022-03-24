@@ -10,7 +10,7 @@ const validJson = {
 };
 
 void main() {
-  test('Status constructor', () {
+  test('Status constructor confirmed is true', () {
     var status = Status(
         true,
         2190517,
@@ -21,6 +21,18 @@ void main() {
     expect(status.blockHash,
         "00000000000000e11283a2828be52fb7e94264de722c98fd0d1221be7efd7429");
     expect(status.blockTime, 1647732997);
+  });
+
+  test('Status constructor confirmed is false', () {
+    var status = Status(
+        false,
+        2190517,
+        "00000000000000e11283a2828be52fb7e94264de722c98fd0d1221be7efd7429",
+        1647732997);
+    expect(status.confirmed, false);
+    expect(status.blockHeight, null);
+    expect(status.blockHash, null);
+    expect(status.blockTime, null);
   });
 
   test('Status.fromJson', () {
