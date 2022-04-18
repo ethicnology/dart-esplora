@@ -1,4 +1,5 @@
 # dart-esplora 
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Dart CI](https://github.com/ethicnology/dart-esplora/actions/workflows/dart.yml/badge.svg?branch=main)](https://github.com/ethicnology/dart-esplora/actions/workflows/dart.yml)
 [![pub package](https://img.shields.io/pub/v/esplora.svg)](https://pub.dartlang.org/packages/esplora)
 [![codecov](https://codecov.io/gh/ethicnology/dart-esplora/branch/main/graph/badge.svg?token=RZ7O009HQY)](https://codecov.io/gh/ethicnology/dart-esplora)  
